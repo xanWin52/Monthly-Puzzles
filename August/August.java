@@ -10,7 +10,7 @@ public class August{
             String[] line = in.nextLine().split(" ");
             for(int i = 0; i < line.length; i ++){
                 for(int j = 0; j <line[i].length(); j ++){
-                    char let = (char) (line[i].charAt(j) - ' '%26);
+                    char let = (char) (line[i].charAt(j) - 6);
                     if(let < 65){
                         let += 26;
                     }
