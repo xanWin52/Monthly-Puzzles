@@ -12,6 +12,7 @@ public class September{
             for(int i = 0; i < line.length(); i ++){
                 int curr = line.charAt(i);
                 result += Integer.toBinaryString(curr);
+                System.out.println(Integer.toBinaryString(curr));
             }
         }
         int count = 0;
