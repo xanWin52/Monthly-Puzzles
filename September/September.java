@@ -6,20 +6,18 @@ public class September{
 
     public static void main(String[] args) throws IOException{
         Scanner in = new Scanner(new File("september.dat"));
-        String result = "";
-        while(in.hasNextLine()){
-            String line = in.nextLine();
-            for(int i = 0; i < line.length(); i ++){
-                int curr = line.charAt(i);
-                result += Integer.toBinaryString(curr);
-                System.out.println(Integer.toBinaryString(curr));
-            }
-        }
         int count = 0;
-        for(int i = 0; i < result.length(); i ++){
-            if(result.charAt(i) == '1'){
-                count ++;
+        while(in.hasNextLine()){
+            char[] line = in.nextLine().toCharArray();
+            for(char x : line){
+                String temp = String.format("%s", Integer.toBinaryString(x)).replaceAll(" ", "0");
+                for(int i = 0; i < temp.length(); i ++){
+                    if(temp.charAt(i) == '1'){
+                        count ++;
+                    }
+                }
             }
+            count += 1;
         }
         System.out.println(count);
     }
