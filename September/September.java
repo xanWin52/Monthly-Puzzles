@@ -19,7 +19,7 @@ public class September{
             }
             count += 1;
         }
-        System.out.println(count);
+        System.out.println(count-1);
     }
 
 }
