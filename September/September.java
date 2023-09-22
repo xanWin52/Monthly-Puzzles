@@ -6,18 +6,28 @@ import java.util.Scanner;
 public class September{
 
     public static void main(String[] args) throws IOException{
-        char[] text = "Dear Ole Flour Bluff High School,We pay you honor today.We will tell the world that your honor will stay.All hail to those who came before us,And made us so strong.We will never falter or DO YOU WRONG.".toCharArray();
-        int count = 0;
-        String binary = "";
-        for(char x : text){
-            binary += Integer.toBinaryString(x);
+        Scanner in = new Scanner(new File("september.dat"));
+        StringBuilder s = new StringBuilder();
+        for(int i = 0; i < 6;i ++){
+            String line = in.nextLine();
+            byte[] bytes = line.getBytes();
+            for(byte b : bytes){
+                int val = b;
+                for(int j = 0; j < 8; j ++){
+                    s.append((val & 128) == 0 ? 0 : 1);
+                    val <<= 1;
+                }
+                s.append(" ");
+            }
         }
+
+        String binary = s.toString();
+        int count = 0;
         for(int i = 0; i < binary.length(); i ++){
-            if(binary.substring(i,i+1).equals("1")){
+            if(binary.substring(i, i + 1).equals("1")){
                 count ++;
             }
         }
-        count += 5;
         System.out.println(count);
     }
 
