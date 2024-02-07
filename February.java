@@ -16,23 +16,31 @@ public class February {
         shortMonths.add(9);
         shortMonths.add(11);
         int count = 0;
-        for(int year = 24; year < 25; year ++){
+        for(int year = 2000; year < 2100; year ++){
             for(int month = 1; month <= 12; month ++){
                 int numDays = 0;
                 if(longMonths.contains(month)){ numDays = 31;}
                 else if(shortMonths.contains(month)){ numDays = 30;}
-                else if(month == 2) {numDays = 28;}
-
+                else if(month == 2) {
+                    if(year % 4 == 0 && year % 100 != 0 || year % 400 == 0){
+                        numDays = 29;
+                    } else {
+                        numDays = 28;
+                    }
+                }
+                // System.out.println(numDays);
                 for(int day = 1; day <= numDays; day ++){
-                    int date = month * 10000 + day * 100 + year;
+                    int date = month * 10000 + day * 100 + (year % 100);
+                    // System.out.println(date);
+                    // System.out.println(date);
                     Set<Integer> factors = factor(date);
-                    System.out.println(factors);
+                    // System.out.println(factors);
                     int total = 0;
                     for(int i : factors){
                         total += i;
                     }
-                    System.out.println(total);
-                    int target = total - date;
+                    // System.out.println(total);
+                    int target = (total - date)/2;
                     if(factors.contains(target)){
                         count ++;
                     }
@@ -45,8 +53,8 @@ public class February {
     public static Set<Integer> factor(int num ){
         Set<Integer> result = new HashSet<Integer>();
         result.add(1);
-        for(int i = 2; i < (int)Math.ceil(Math.sqrt(num)); i ++){
-            if(!result.contains(i) && num % i == 0){
+        for(int i = 2; i < (int) Math.ceil(Math.sqrt(num)); i ++){
+            if(num % i == 0){
                 result.add(i);
                 result.add(num / i);
             }
